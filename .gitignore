@@ -1,0 +1,5 @@
+#Don't pull in credentials
+credentials.json
+
+#Don't pull in token file
+token.pickle
