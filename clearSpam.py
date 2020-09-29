@@ -44,8 +44,9 @@ def deleteSpam(service, user_id):
     if not messages:
         print('Spam is clear')
     else:
-        service.users().messages().batchDelete(userId = user_id, body = messages).execute()
-        print('Clearing spam folder')
+        for message in messages:
+            service.users().messages().delete(userId = user_id, id = message['id']).execute()
+            print('Clearing spam folder')
 
 def getMessages(service, user_id):
     results = service.users().messages().list(userId = 'me', labelIds = [target]).execute()
